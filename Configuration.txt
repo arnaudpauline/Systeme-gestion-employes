@@ -1,0 +1,17 @@
+
+
+- dotnet add package Microsoft.EntityFrameworkCore
+- dotnet add package Microsoft.EntityFrameworkCore.Design
+- dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
+
+- dotnet tool install --global dotnet-ef
+
+- dotnet ef dbcontext scaffold “Server=(localdb)\MSSQLLocalDB;Database=ManageEmployees;Trusted_Connection=True;” Microsoft.EntityFrameworkCore.SqlServer -o Entities --context-dir Infrastructures/Database/  -c ManageEmployeeDbContext -d -f
+
+-     "ConnectionStrings": {
+        "EmployeesDatabase": "Server=(localdb)\\MSSQLLocalDB;Database=ManageEmployees;Trusted_Connection=True;"
+    }
+-
+
+
