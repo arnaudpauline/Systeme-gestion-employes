@@ -4,6 +4,6 @@ namespace ManageEmployees.Services.Contracts
 {
     public interface IDepartementService
     {
-        Task<ReadDepartment> CreateDepartmentAsync(string departmentName);
+        Task<ReadDepartment> CreateDepartmentAsync(CreateDepartment department);
     }
 }

@@ -1,5 +1,7 @@
 ﻿using ManageEmployees.Dtos.Department;
+using ManageEmployees.Entities;
 using ManageEmployees.Services.Contracts;
+using ManageEmployees.Services.Implementations;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,20 +21,20 @@ namespace ManageEmployees.Controllers
 
         // POST api/<DepartmentsController>
         [HttpPost]
-        public async Task<ActionResult<ReadDepartment>> Post([FromBody] string departmentName)
+        public async Task<ActionResult<ReadDepartment>> Post([FromBody] CreateDepartment department)
         {
-            if(string.IsNullOrWhiteSpace(departmentName))
+            if (department == null || string.IsNullOrWhiteSpace(department.Name)
+                || string.IsNullOrWhiteSpace(department.Address) || string.IsNullOrWhiteSpace(department.Description))
             {
-                return BadRequest("Echec de création d'un departement : Le nom du department est null ou vide");
+                return BadRequest("Echec de création d'un departement : les informations sont null ou vides");
             }
 
             try
             {
-                var department = await _departementService.CreateDepartmentAsync(departmentName);
-
-                return Ok(department);
+                var departmentCreated = await _departementService.CreateDepartmentAsync(department);
+                return Ok(departmentCreated);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Problem(ex.Message);
             }
