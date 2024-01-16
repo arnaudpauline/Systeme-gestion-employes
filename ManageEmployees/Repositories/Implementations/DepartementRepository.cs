@@ -24,6 +24,13 @@ namespace ManageEmployees.Repositories.Implementations
             return await _dbContext.Departments.FirstOrDefaultAsync(x => x.DepartmentId == departmentId);
         }
 
+        public async Task<Department> GetDepartmentByIdWithIncludeAsync(int departmentId)
+        {
+            return await _dbContext.Departments
+                .Include(x => x.EmployeeDepartments)
+                .FirstOrDefaultAsync(x => x.DepartmentId == departmentId);
+        }
+
         public async Task<Department> GetDepartmentByNameAsync(string departmentName)
         {
             return await _dbContext.Departments.FirstOrDefaultAsync(x => x.Name == departmentName);
@@ -43,7 +50,7 @@ namespace ManageEmployees.Repositories.Implementations
             return departmentToCreate;
         }
 
-        public async Task<Department> DeleteDepartmentById(int departmentId)
+        public async Task<Department> DeleteDepartmentByIdAsync(int departmentId)
         {
             var departmentToDelete = await _dbContext.Departments.FindAsync(departmentId);
             _dbContext.Departments.Remove(departmentToDelete);

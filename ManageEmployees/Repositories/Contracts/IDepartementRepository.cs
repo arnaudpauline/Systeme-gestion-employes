@@ -8,12 +8,14 @@ namespace ManageEmployees.Repositories.Contracts
 
         Task<Department> GetDepartmentByIdAsync(int departmentId);
 
+        Task<Department> GetDepartmentByIdWithIncludeAsync(int departmentId);
+
         Task<Department> GetDepartmentByNameAsync(string departmentName);
 
         Task UpdateDepartmentAsync(Department departmentToUpdate);
 
         Task<Department> CreateDepartmentAsync(Department departmentToCreate);
 
-        Task<Department> DeleteDepartmentById(int departmentId);
+        Task<Department> DeleteDepartmentByIdAsync(int departmentId);
     }
 }
