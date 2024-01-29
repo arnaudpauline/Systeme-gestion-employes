@@ -14,9 +14,15 @@ builder.Services.AddDbContext<ManageEmployeeDbContext>(options =>
 
 // Ajout des repositories
 builder.Services.AddScoped<IDepartementRepository, DepartementRepository>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+builder.Services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
 
 // Ajout des services
 builder.Services.AddScoped<IDepartementService, DepartementService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+builder.Services.AddScoped<ILeaveRequestService, LeaveRequestService>();
 
 
 builder.Services.AddControllers();
